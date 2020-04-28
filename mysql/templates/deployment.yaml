@@ -29,13 +29,13 @@ spec:
         - name: MYSQL_ROOT_HOST
           value: "%"
         - name: MYSQL_DATABASE
-          value: vh01_wordpress_db
+          value: {{ .Values.databaseSite1Name }}
         - name: MYSQL_DATABASE 
-          value: vh02_wordpress_db
+          value: {{ .Values.databaseSite2Name }}
         - name: MYSQL_USER
-          value: wordpress_user
+          value: {{ .Values.databaseUser }}
         - name: MYSQL_PASSWORD
-          value: PASSWORD
+          value: {{ .Values.databasePassword }}
         ports:
         - containerPort: 3306
           name: mysql
