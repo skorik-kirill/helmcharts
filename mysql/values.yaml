@@ -2,4 +2,4 @@ databaseSite1Name: vh01_wordpress_db
 databaseSite2Name: vh02_wordpress_db
 databaseUser: wordpress_user
 databasePassword: PASSWORD
-
+PersistentVolumeClaim: mysql-persistent-storage
