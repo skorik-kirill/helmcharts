@@ -27,7 +27,15 @@ spec:
               name: mysql-pass
               key: password
         - name: MYSQL_ROOT_HOST
-          value: "%" 
+          value: "%"
+        - name: MYSQL_DATABASE
+          value: vh01_wordpress_db
+        - name: MYSQL_DATABASE 
+          value: vh02_wordpress_db
+        - name: MYSQL_USER
+          value: wordpress_user
+        - name: MYSQL_PASSWORD
+          value: PASSWORD
         ports:
         - containerPort: 3306
           name: mysql
