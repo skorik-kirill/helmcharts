@@ -4,12 +4,12 @@ node('pod') {
    
       
    
-    stage(' docker ps  ') {
+    stage(' test docker   ') {
        container('docker') {
       sh 'docker ps '
         
        }
-       stage('kubecctl'){
+       stage('test kubectl'){
        container('kubectl'){
           sh 'kubectl version'
           sh 'kubectl get pod'
@@ -19,7 +19,7 @@ node('pod') {
      }
        stage('list derectory'){
        sh 'ls -l' 
-       sh 'ansible'
+       
        }
        stage('deploy helm chart'){
           container('kubectl'){
