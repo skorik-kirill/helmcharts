@@ -21,7 +21,7 @@ node('pod') {
        stage('deploy helm chart'){
           container('kubectl'){
           sh 'helm install --name mysql ${PWD}/mysql'
-          sh 'helm install --name wordpress1 ${PWD}/wordpress1'
+          sh 'helm install --name wordpress1 ${PWD}/wordpress2'
           sh 'helm list'
          }
        }
