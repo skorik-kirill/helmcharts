@@ -41,7 +41,9 @@ node('pod') {
           sleep 60
          }
        }
-       
+   stage('test site'){
+      sh 'curl http://vh01.kirill.k8s.local/' 
+   }
        stage('delete test deployment'){
           container('kubectl'){
             //sh 'helm delete  wordpress1 --purge'
