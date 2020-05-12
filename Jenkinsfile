@@ -2,7 +2,7 @@ node('pod') {
    
     checkout scm
    
-      sh 'echo "34.71.232.200           vh02.kirill.k8s.local" >> /etc/hosts' 
+      sh ' cat  /etc/hosts' 
    
     stage(' docker ps  ') {
        container('docker') {
