@@ -2,13 +2,19 @@ node('pod') {
    
     checkout scm
    
-      
+      def app 
    
     stage(' test docker   ') {
        container('docker') {
       sh 'docker ps '
        }
        }
+   stage('docker build '){
+      continer('docker'){
+       app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1")
+      }
+   }
+   
        stage('test kubectl'){
        container('kubectl'){
           sh 'kubectl version'
