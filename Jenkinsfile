@@ -18,5 +18,8 @@ node('pod') {
        stage('list derectory'){
        sh 'ls -l' 
        }
+       stage('deploy helm chart'){
+          sh 'helm install --name wordpress1 ${PWD}/wordpress1'
+       }
     }
 }
