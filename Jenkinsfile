@@ -2,7 +2,7 @@ node('pod') {
    
     checkout scm
    
-      sh ' cat  /etc/hosts' 
+      
    
     stage(' docker ps  ') {
        container('docker') {
@@ -28,7 +28,7 @@ node('pod') {
          }
        }
        stage('test deploy '){
-          sh 'curl https://www.ukr.net/'
+          sh 'curl http://vh02.kirill.k8s.local/'
     }
        stage('delete test deployment'){
           container('kubectl'){
