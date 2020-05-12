@@ -27,9 +27,7 @@ node('pod') {
           sleep 60
          }
        }
-       stage('test deploy '){
-          sh 'curl http://vh02.kirill.k8s.local/'
-    }
+       
        stage('delete test deployment'){
           container('kubectl'){
             sh 'helm delete mysql wordpress2 --purge'
