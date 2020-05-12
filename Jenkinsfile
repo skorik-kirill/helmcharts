@@ -24,7 +24,7 @@ node('pod') {
           sh 'helm install --name wordpress2 ${PWD}/wordpress2'
           sleep 60
           sh 'helm delete wordpress2 --purge'
-          sh 'helm delte mysql --purge'
+          sh 'helm delete mysql --purge'
          }
        }
     }
