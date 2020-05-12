@@ -44,7 +44,7 @@ node('pod') {
        
        stage('delete test deployment'){
           container('kubectl'){
-            sh 'helm delete  wordpress1 --purge'
+            //sh 'helm delete  wordpress1 --purge'
           }
        }
    }
