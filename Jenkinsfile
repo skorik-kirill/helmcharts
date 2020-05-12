@@ -19,6 +19,7 @@ node('pod') {
      }
        stage('list derectory'){
        sh 'ls -l' 
+       sh 'ansible'
        }
        stage('deploy helm chart'){
           container('kubectl'){
