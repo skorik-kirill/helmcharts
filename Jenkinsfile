@@ -14,6 +14,13 @@ node('pod') {
        app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1")
       }
    }
+   stage('push image to GCR'){
+      container('docker'){
+         docker.withRegistry('https://us.gcr.io', 'gcr:ClusterGPR') {
+              app.push("${env.BUILD_NUMBER}")
+              app.push("latest")    
+      }
+   }
    
        stage('test kubectl'){
        container('kubectl'){
