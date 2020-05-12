@@ -19,7 +19,9 @@ node('pod') {
        sh 'ls -l' 
        }
        stage('deploy helm chart'){
+          container('kubectl'){
           sh 'helm install --name wordpress1 ${PWD}/wordpress1'
+         }
        }
     }
 }
