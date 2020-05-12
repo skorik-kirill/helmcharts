@@ -21,7 +21,7 @@ node('pod') {
        stage('deploy helm chart'){
           container('kubectl'){
           sh 'helm install --name mysql ${PWD}/mysql'
-          sh 'helm install --name wordpress1 ${PWD}/wordpress2'
+          sh 'helm install --name wordpress2 ${PWD}/wordpress2'
           sleep 60
           sh 'helm delete wordpress2 --purge'
           sh 'helm delte mysql --purge'
