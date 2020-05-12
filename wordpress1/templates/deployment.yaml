@@ -18,7 +18,7 @@ spec:
         tier: {{.Values.tier }}
     spec:
       containers:
-      - image: skorikkirill/wordpress1:24
+      - image: us.gcr.io/sincere-hybrid-274219/wordpress1:latest
         name: vh01
         env:
         - name: WORDPRESS_DB_HOST
