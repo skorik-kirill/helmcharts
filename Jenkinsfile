@@ -33,4 +33,5 @@ node('pod') {
             sh 'helm delete mysql wordpress2 --purge'
           }
        }
+   }
 }
