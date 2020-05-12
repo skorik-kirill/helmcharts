@@ -23,9 +23,14 @@ node('pod') {
           sh 'helm install --name mysql ${PWD}/mysql'
           sh 'helm install --name wordpress2 ${PWD}/wordpress2'
           sleep 60
-          sh 'helm delete wordpress2 --purge'
-          sh 'helm delete mysql --purge'
          }
        }
+       stage('test deploy '){
+          sh 'curl https://www.ukr.net/'
     }
+       stage('delete test deployment'){
+          container('kubectl'){
+            sh 'helm delete mysql wordpress2 --purge'
+          }
+       }
 }
