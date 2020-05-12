@@ -30,8 +30,6 @@ spec:
           value: "%"
         - name: MYSQL_DATABASE
           value: {{ .Values.databaseSite1Name }}
-        - name: MYSQL_DATABASE 
-          value: {{ .Values.databaseSite2Name }}
         - name: MYSQL_USER
           value: {{ .Values.databaseUser }}
         - name: MYSQL_PASSWORD
