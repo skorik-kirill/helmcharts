@@ -7,7 +7,7 @@ node('pod') {
     stage(' test docker   ') {
        container('docker') {
       sh 'docker ps '
-        
+       }
        }
        stage('test kubectl'){
        container('kubectl'){
@@ -35,4 +35,4 @@ node('pod') {
           }
        }
    }
-}
+
