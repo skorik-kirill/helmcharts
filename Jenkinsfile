@@ -10,7 +10,7 @@ node('pod') {
        }
        }
    stage('docker build '){
-      continer('docker'){
+      container('docker'){
        app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1")
       }
    }
