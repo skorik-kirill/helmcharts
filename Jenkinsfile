@@ -22,7 +22,9 @@ node('pod') {
           container('kubectl'){
           sh 'helm install --name mysql ${PWD}/mysql'
           sh 'helm install --name wordpress1 ${PWD}/wordpress2'
-          sh 'helm list'
+          sleep 60
+          sh 'helm delete wordpress2 --purge'
+          sh 'helm delte mysql --purge'
          }
        }
     }
