@@ -49,5 +49,11 @@ node('pod') {
             sh 'helm delete  wordpress1 --purge'
           }
        }
+   post {
+      success {
+         echo "Sending e-mail"
+         mail bcc: '', body: 'Build Docker image, deploy and test was successfull', cc: '', from: '', replyTo: '', subject: 'jenkins_build', to: 'skorikkirill7@gmail.com'
+      }
+   }
    }
 
