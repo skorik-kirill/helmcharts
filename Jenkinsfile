@@ -36,7 +36,7 @@ node('pod') {
        }
        stage('deploy helm chart'){
           container('kubectl'){
-          sh 'helm install --name mysql ${PWD}/mysql'
+          //sh 'helm install --name mysql ${PWD}/mysql'
           sh 'helm install --name wordpress1 ${PWD}/wordpress1'
           sleep 60
          }
@@ -44,7 +44,7 @@ node('pod') {
        
        stage('delete test deployment'){
           container('kubectl'){
-            sh 'helm delete mysql wordpress1 --purge'
+            sh 'helm delete  wordpress1 --purge'
           }
        }
    }
