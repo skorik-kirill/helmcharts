@@ -4,11 +4,6 @@ node('pod') {
    
       def app 
       
-   stage('ansible init'){
-      def tfHome = tool name: 'Ansible'
-                env.PATH = "${tfHome}:${env.PATH}"
-                 sh 'ansible --version'
-   }
    
     stage(' test docker   ') {
        container('docker') {
