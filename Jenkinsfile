@@ -43,7 +43,8 @@ node('pod') {
          }
        }
    stage('test site'){
-     sh 'curl http://add194f6.ngrok.io' 
+     //sh 'curl http://add194f6.ngrok.io' 
+      code=`curl -sL --connect-timeout 20 --max-time 30 -w "%{http_code}\\n" "$url" -o /dev/null`
    }
    
        stage('delete test deployment'){
