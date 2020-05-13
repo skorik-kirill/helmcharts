@@ -43,7 +43,7 @@ node('pod') {
          }
        }
    stage('test site'){
-     /sh 'curl http://add194f6.ngrok.io' 
+     //sh 'curl http://add194f6.ngrok.io' 
       script{
       response=$(curl -s -o /dev/null -w "%{http_code}\n" http://add194f6.ngrok.io)
        echo $response
