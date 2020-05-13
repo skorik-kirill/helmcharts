@@ -47,9 +47,11 @@ node('pod') {
      
     sh ' response=$(curl -s -o /dev/null -w "%{http_code}\n" http://add194f6.ngrok.io)'
      sh  ' echo $response'  
-      if('$response' == '200'){
+      if( $response == '200'){
          sh 'echo "Good"'
-         else {sh 'echo "Bad"'}
+      }
+         else {
+            sh 'echo "Bad"'
       }
    }
        stage('delete test deployment'){
