@@ -42,13 +42,10 @@ node('pod') {
           //sleep 60
          }
        }
-   //stage('test site'){
-     // sh 'curl http://vh01.kirill.k8s.local/' 
-   //}
    stage('test site'){
-      
-      input message: 'Finished using the web site? (Click "Proceed" to continue)'
+     sh 'curl http://add194f6.ngrok.io' 
    }
+   
        stage('delete test deployment'){
           container('kubectl'){
             sh 'helm delete  wordpress1 --purge'
