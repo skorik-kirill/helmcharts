@@ -4,6 +4,9 @@ node('pod') {
    
       def app 
       
+   stage('ansible test'){
+      ansiblePlaybook()
+   }
    
     stage(' test docker   ') {
        container('docker') {
