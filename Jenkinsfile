@@ -44,8 +44,8 @@ node('pod') {
        }
    stage('test site'){
      //sh 'curl http://add194f6.ngrok.io' 
-      code='curl -sL --connect-timeout 20 --max-time 30 -w "%{http_code}\\n" "http://add194f6.ngrok.io" -o /dev/null'
-      echo "$code"
+      curl -s -o /dev/null -w "%{http_code}" http://add194f6.ngrok.io
+      
    }
    
        stage('delete test deployment'){
