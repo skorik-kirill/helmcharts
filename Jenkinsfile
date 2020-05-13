@@ -48,13 +48,7 @@ node('pod') {
     sh ' response=$(curl -s -o /dev/null -w "%{http_code}\n" http://add194f6.ngrok.io)'
      sh  ' echo $response'    
    }
-   post {
-    success {
-        mail to: 'skorikkirill7@gmail.com',
-             subject: "Success  Pipeline: ${currentBuild.fullDisplayName}",
-             body: "All good ${env.BUILD_URL}"
-    }
-}
+   
    
        stage('delete test deployment'){
           container('kubectl'){
