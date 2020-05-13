@@ -48,7 +48,7 @@ node('pod') {
     sh ' response=$(curl -s -o /dev/null -w "%{http_code}\n" http://add194f6.ngrok.io)'
      sh  ' echo $response'
        sh 'if [ "$response" != "200" ]'
-         sh 'echo "test success" 
+         sh 'echo "test success"'
    }
        stage('delete test deployment'){
           container('kubectl'){
