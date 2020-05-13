@@ -44,10 +44,13 @@ node('pod') {
        }
    stage('test site'){
      //sh 'curl http://add194f6.ngrok.io' 
-      script{
-     ' response=$(curl -s -o /dev/null -w "%{http_code}\n" http://add194f6.ngrok.io)'
-      ' echo $response'
-         }
+     
+    sh ' response=$(curl -s -o /dev/null -w "%{http_code}\n" http://add194f6.ngrok.io)'
+     sh  ' echo $response'
+       sh 'if [ "$response" != "200" ]'
+         sh '  then'
+          sh ' exit 1'
+            sh   'fi '
    }
        stage('delete test deployment'){
           container('kubectl'){
