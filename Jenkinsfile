@@ -64,8 +64,5 @@ node('pod') {
             sh 'helm delete  wordpress1 --purge'
           }
        }
-         post {
-                  always { sh' echo "OK"'}
-         }
 }
 
