@@ -64,7 +64,7 @@ node('pod') {
             else{
                   println("sent e-mail false test")
                   println("Fix your image")
-                  currentBuild.result = 'ABORTED'
+                  exit 1 
             }
    }
   // notifySuccessful()
