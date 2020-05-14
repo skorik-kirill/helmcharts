@@ -58,9 +58,11 @@ node('pod') {
      //sh  ' echo $response' 
            println("Response: " +response)
             if(response != 200){
-                  println("Good")
+                  println("Test passed continue to deploy")
+                  println("sent e-mail success test")
             }
             else{
+                  println("sent e-mail false test")
                   println("Fix your image")
                   currentBuild.result = 'ABORTED'
             }
