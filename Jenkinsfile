@@ -48,14 +48,15 @@ node('pod') {
           container('kubectl'){
           //sh 'helm install --name mysql ${PWD}/mysql'
           sh 'helm install --name wordpress1 ${PWD}/wordpress1'
-          sleep 30
+          sleep 15
          }
        }
    stage('test site'){
      //sh 'curl http://add194f6.ngrok.io' 
      
     def response= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n" http://de113727.ngrok.io', returnStdout: true)
-     //sh  ' echo $response'   
+     //sh  ' echo $response' 
+            println response
             if(response == '200'){
                   echo 'Good'
             }
