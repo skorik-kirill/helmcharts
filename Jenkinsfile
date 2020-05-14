@@ -61,7 +61,8 @@ node('pod') {
                   println("Good")
             }
             else{
-                  println("Bad")
+                  println("Fix your image")
+                  currentBuild.result = 'ABORTED'
             }
    }
   // notifySuccessful()
