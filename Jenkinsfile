@@ -54,8 +54,8 @@ node('pod') {
    stage('test site'){
      //sh 'curl http://add194f6.ngrok.io' 
      
-    sh ' response=$(curl -s -o /dev/null -w "%{http_code}\n" http://de113727.ngrok.io)'
-     sh  ' echo $response'   
+    echo response=$(curl -s -o /dev/null -w "%{http_code}\n" http://de113727.ngrok.io)'
+     //sh  ' echo $response'   
             if($response == '200'){
                   echo 'Good'
             }
