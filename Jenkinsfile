@@ -61,7 +61,10 @@ node('pod') {
                   println("Test passed continue to deploy")
                   println("sent e-mail success test")
             }
-            else{
+            else{ 
+                     container('kubectl'){
+                      sh 'helm delete  wordpress1 --purge'
+                        }
                   println("sent e-mail false test")
                   println("Fix your image")
                   sh 'exit 1'
