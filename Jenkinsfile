@@ -58,9 +58,11 @@ node('pod') {
      //sh  ' echo $response' 
            println("Response: " +response)
             if(response == "200"){
-                  echo 'Good'
+                  println("Good")
             }
-            else{echo 'bad'}
+            else{
+                  println("Bad")
+            }
    }
   // notifySuccessful()
    
