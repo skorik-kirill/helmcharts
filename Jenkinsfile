@@ -3,7 +3,14 @@ node('pod') {
     checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/helmcharts.git']]]
    
       def app 
-      
+      def notifySuccess() {
+         emailext (
+      subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+        <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+    )
+      }
    
     stage(' test docker   ') {
        container('docker') {
@@ -48,7 +55,7 @@ node('pod') {
     sh ' response=$(curl -s -o /dev/null -w "%{http_code}\n" http://add194f6.ngrok.io)'
      sh  ' echo $response'    
    }
-   
+   notifySuccess()
    
        stage('delete test deployment'){
           container('kubectl'){
