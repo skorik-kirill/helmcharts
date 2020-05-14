@@ -1,9 +1,4 @@
-node('pod') {
-   
-    checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/helmcharts.git']]]
-   
-      def app 
-      def notifySuccessful() {
+def notifySuccessful() {
          emailext (
       subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
@@ -11,6 +6,12 @@ node('pod') {
       recipientProviders: [[$class: 'DevelopersRecipientProvider']]
     )
       }
+node('pod') {
+   
+    checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/helmcharts.git']]]
+   
+      def app 
+      
    
     stage(' test docker   ') {
        container('docker') {
