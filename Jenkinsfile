@@ -57,12 +57,12 @@ node('pod') {
     def response= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n" http://de113727.ngrok.io', returnStdout: true)
      //sh  ' echo $response' 
            println("Response: " +response)
-            if(response == '200'){
+            if(response == "200"){
                   echo 'Good'
             }
             else{echo 'bad'}
    }
-   notifySuccessful()
+  // notifySuccessful()
    
        stage('delete test deployment'){
           container('kubectl'){
