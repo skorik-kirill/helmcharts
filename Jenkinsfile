@@ -64,7 +64,8 @@ node('pod') {
             else{
                   println("sent e-mail false test")
                   println("Fix your image")
-                  exit 1 
+                  sh 'exit 1'
+                     
             }
    }
   // notifySuccessful()
