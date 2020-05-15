@@ -13,10 +13,17 @@ def notifyFailed() {
       subject: "Failed test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: """Test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Failed!!!
         Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
+                  
+ def notifyStarted() {
+         emailext (
+      to: 'skorikkirill7@gmail.com',
+      subject: "Started build: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """Build: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Started!!!
+        Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
     )
       }
 node('pod') {
-   
+   notifyStarted()
     checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/helmcharts.git']]]
       def app 
       
