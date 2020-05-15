@@ -59,6 +59,7 @@ node('pod') {
             if(response != 200){
                   println("Test passed continue to deploy")
                   println("sent e-mail success test")
+                     notifySuccessful()
             }
             else{ 
                      container('kubectl'){
