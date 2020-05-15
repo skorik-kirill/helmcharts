@@ -6,4 +6,4 @@
     dest: /tmp/chart
     update: no
 - name: install chart
-  command: helm install --name wordpress1  /tmp/chart/wordpress1
+  command: "helm install --name wordpress1  /tmp/chart/wordpress1"
