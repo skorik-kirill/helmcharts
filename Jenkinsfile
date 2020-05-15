@@ -95,8 +95,8 @@ node('pod') {
             sh 'helm delete  wordpress1 --purge'
           }
        }
-      //  stage('deploy web-app with ansible'){
-          //       sh 
-       //  }
+        stage('deploy web-app with ansible'){
+                 sh 'ansible-playbook wordpress1.yaml'
+         }
 }
 
