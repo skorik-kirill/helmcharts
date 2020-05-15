@@ -2,7 +2,15 @@ def notifySuccessful() {
          emailext (
       to: 'skorikkirill7@gmail.com',
       subject: "Success test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-      body: """Test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+      body: """Test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Success!!!
+        Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
+    )
+      }
+def notifyFailed() {
+         emailext (
+      to: 'skorikkirill7@gmail.com',
+      subject: "Failed test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """Test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Failed!!!
         Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
     )
       }
@@ -56,7 +64,7 @@ node('pod') {
     def response= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n" http://3e66264e.ngrok.io', returnStdout: true)
      //sh  ' echo $response' 
            println("Response: " +response)
-            if(response != 200){
+            if(response == 200){
                   println("Test passed continue to deploy")
                   println("sent e-mail success test")
                      notifySuccessful()
@@ -65,6 +73,7 @@ node('pod') {
                      container('kubectl'){
                       sh 'helm delete  wordpress1 --purge'
                         }
+                     notifyFailed()
                   println("sent e-mail false test")
                   println("Fix your image")
                   sh 'exit 1'
