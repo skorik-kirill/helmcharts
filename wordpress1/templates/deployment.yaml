@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    app: {{.Values.app }}
+spec:
+  selector: 
+    matchLabels:
+      app: {{.Values.app }}
+      tier: {{.Values.tier }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{.Values.app }}
+        tier: {{.Values.tier }}
+    spec:
+      containers:
+      - image: us.gcr.io/sincere-hybrid-274219/wordpress1:latest
+        name: vh01
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: {{ .Values.databaseHost }}
+        - name: WORDPRESS_DB_USER
+          value: {{ .Values.databaseUser }}
+        - name: WORDPRESS_DB_NAME
+          value: {{ .Values.databaseName }}
+        - name: WORDPRESS_DB_PASSWORD
+          value: {{ .Values.databasePassword }}
+        ports:
+        - containerPort: 80
+          name: {{ .Values.name}}

@@ -1,0 +1,9 @@
+name: vh01
+app: vh01
+tier: vh01
+databaseHost: mysql
+databaseName: vh01_wordpress_db
+databaseUser: wordpress_user
+databasePassword: PASSWORD
+service:
+  type: ClusterIP

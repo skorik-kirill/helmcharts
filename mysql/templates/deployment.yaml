@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+      tier: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+        tier: mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+        - name: MYSQL_ROOT_HOST
+          value: "%"
+        - name: MYSQL_DATABASE
+          value: {{ .Values.databaseSite1Name }}
+        - name: MYSQL_USER
+          value: {{ .Values.databaseUser }}
+        - name: MYSQL_PASSWORD
+          value: {{ .Values.databasePassword }}
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: {{ .Values.PersistentVolumeClaim }}
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: {{ .Values.PersistentVolumeClaim }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.PersistentVolumeClaim }}

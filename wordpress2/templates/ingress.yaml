@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: wordpress2-ingress
+spec:
+  rules:
+  - host: vh02.kirill.k8s.local
+    http:
+      paths:
+      - backend:
+          serviceName: {{ .Values.service.name }} 
+          servicePort: 80
