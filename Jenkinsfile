@@ -66,7 +66,7 @@ node('pod') {
      //sh  ' echo $response' 
            println("Response: " +response)
             def intResponse = response as int
-            if( intResponse == 200 ){
+            if( intResponse != 200 ){
                   println("Test passed continue to deploy")
                   println("sent e-mail success test")
                      notifySuccessful()
