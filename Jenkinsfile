@@ -64,7 +64,8 @@ node('pod') {
     def response= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n" http://3e66264e.ngrok.io', returnStdout: true)
      //sh  ' echo $response' 
            println("Response: " +response)
-            if(response == 200){
+            def intResponse = response as int
+            if(response == "200"){
                   println("Test passed continue to deploy")
                   println("sent e-mail success test")
                      notifySuccessful()
