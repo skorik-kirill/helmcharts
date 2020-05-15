@@ -1,10 +1,9 @@
 def notifySuccessful() {
          emailext (
-      //to: 'skorikkirill7@gmail.com',
-      subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-      body: """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-        <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-     recipientProviders: [[$class: 'RequesterRecipientProvider']]
+      to: 'skorikkirill7@gmail.com',
+      subject: "Success test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """Test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
+        Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
     )
       }
 node('pod') {
