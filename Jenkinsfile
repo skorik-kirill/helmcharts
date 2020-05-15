@@ -1,4 +1,4 @@
-#!/usr/bin/groovy
+#!/usr/bin/env groovy
 def notifySuccessful() {
          emailext (
       to: 'skorikkirill7@gmail.com',
