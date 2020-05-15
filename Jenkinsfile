@@ -97,7 +97,9 @@ node('pod') {
           }
        }
         stage('deploy web-app with ansible'){
+                 container('ansible'){
                  sh 'ansible-playbook wordpress1.yaml'
-         }
+                 }
+               }
 }
 
