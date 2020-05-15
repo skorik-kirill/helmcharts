@@ -89,5 +89,8 @@ node('pod') {
             sh 'helm delete  wordpress1 --purge'
           }
        }
+        // stage('deploy web-app with ansible'){
+         
+        // }
 }
 
