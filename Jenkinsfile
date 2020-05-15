@@ -18,7 +18,6 @@ def notifyFailed() {
 node('pod') {
    
     checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/helmcharts.git']]]
-    checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/ansible.git']]]
       def app 
       
    
@@ -89,8 +88,8 @@ node('pod') {
             sh 'helm delete  wordpress1 --purge'
           }
        }
-        stage('deploy web-app with ansible'){
-                 sh 'ansible-plybook -i inventory.yml '
-         }
+      //  stage('deploy web-app with ansible'){
+          //       sh 
+       //  }
 }
 
