@@ -1,0 +1,18 @@
+---
+# tasks file for apache
+- name: install Apache
+  yum: name=httpd state=latest
+- name: start service and enable
+  service: name=httpd state=started enabled=yes
+- firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+- name: Restart service firewalld
+  service: name=firewalld state=restarted
+- name: create sites-avaliable directory
+  file: path=/etc/httpd/sites-available state=directory mode=0755
+- name: create sites-enabled directory
+  file: path=/etc/httpd/sites-enabled state=directory mode=0755
+- name: add to default config file
+  lineinfile: dest=/etc/httpd/conf/httpd.conf line="IncludeOptional sites-enabled/*.conf"

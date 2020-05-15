@@ -1,0 +1,10 @@
+---
+# tasks file for helmtest
+
+- name: add chart to cluster
+  git:
+    repo: https://github.com/skorik-kirill/helmcharts.git
+    dest: /tmp/chart
+    update: no
+- name: install chart 
+  command: helm install --name site1 /tmp/chart/wordpress1

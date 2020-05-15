@@ -1,0 +1,4 @@
+- hosts: kuberCluster
+  roles:
+    - wordpress1
+    - wordpress2  

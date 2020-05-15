@@ -1,0 +1,10 @@
+---
+# tasks file for mysqlChart
+- name: add chart to cluster
+  git:
+    repo: https://github.com/skorik-kirill/helmcharts.git
+    dest: /tmp/chart
+    update: no
+- name: install chart
+  command: helm install --name mysql  /tmp/chart/mysql
+

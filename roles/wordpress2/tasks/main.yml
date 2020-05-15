@@ -1,0 +1,9 @@
+---
+# tasks file for wordpress2
+- name: add chart to cluster
+  git:
+    repo: https://github.com/skorik-kirill/helmcharts.git
+    dest: /tmp/chart
+    update: no
+- name: install chart
+  command: helm install --name wordpress2 /tmp/chart/wordpress2

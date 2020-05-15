@@ -1,0 +1,11 @@
+---
+# tasks file for deploy
+- name: deploy config file for virtual host
+  copy:
+    src: /etc/ansible/site.conf
+    dest: /etc/httpd/sites-available
+    owner: root 
+- name: deploy web page to server
+  copy:
+    src: /var/webpage/index.html
+    dest: /var/www/html/webpage

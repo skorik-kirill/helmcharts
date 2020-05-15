@@ -1,0 +1,5 @@
+---
+# tasks file for mysql
+- name: install mysql
+  yum: name=mysql-server state=latest
+  notify: start mysql
