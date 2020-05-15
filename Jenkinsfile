@@ -13,7 +13,7 @@ def notifyFailed() {
       subject: "Failed test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: """Test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Failed!!!
         Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
-                  
+                  }  
  def notifyStarted() {
          emailext (
       to: 'skorikkirill7@gmail.com',
