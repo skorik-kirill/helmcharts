@@ -5,5 +5,5 @@
     repo: https://github.com/skorik-kirill/helmcharts.git
     dest: /tmp/chart
     update: no
-- name: install chart
-  command: "helm install --name wordpress1  /tmp/chart/wordpress1"
+- name: check dir
+  command: "ls /tmp"
