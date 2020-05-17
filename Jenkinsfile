@@ -34,6 +34,9 @@ node('pod') {
       sh 'docker ps '
        }
        }
+         
+        echo "BUILD DOCKER IMAGE AND TEST FOR SITE1"
+         
    stage('docker build '){
       container('docker'){
        app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1","${WORKSPACE}/wordpress1")
@@ -92,16 +95,71 @@ node('pod') {
             }
    }
   // notifySuccessful()
-   
-       stage('delete test deployment'){
+                          echo "BUILD DOCKER IMAGE AND TEST FOR SITE2"
+      
+         stage('docker build '){
+      container('docker'){
+       app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress2","${WORKSPACE}/wordpress2")
+               //app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1","/home/jenkins/agent/workspace/helmTest_master/wordpress1")
+       //sh 'docker build . -t us.gcr.io/sincere-hybrid-274219/wordpress1 -f ${PWD}/wordpress1/Dockerfile'
+      }
+   }
+   stage('push image to GCR'){
+      container('docker'){
+         docker.withRegistry('https://us.gcr.io', 'gcr:ClusterGPR') {
+              app.push("${env.BUILD_NUMBER}")
+              app.push("latest")    
+         }
+      }
+   }
+         stage('deploy helm chart'){
+          container('kubectl'){
+          //sh 'helm install --name mysql ${PWD}/mysql'
+          sh 'helm install --name wordpress1 ${PWD}/wordpress2'
+          sleep 15
+         }
+       }
+   stage('test site'){
+     //sh 'curl http://add194f6.ngrok.io' 
+     
+    def response2= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n" http://03a66826.ngrok.io', returnStdout: true)
+     //sh  ' echo $response' 
+           println("Response: " +response2)
+            def intResponse2 = response2 as int
+            if( intResponse2 == 200 ){
+                  println("Test passed continue to deploy")
+                  println("sent e-mail success test")
+                     notifySuccessful()
+            }
+            else{ 
+                     container('kubectl'){
+                      sh 'helm delete  wordpress2 --purge'
+                        }
+                     notifyFailed()
+                  println("sent e-mail false test")
+                  println("Fix your image")
+                  sh 'exit 1'
+         
+         
+         
+         
+         
+         stage('delete test deployment'){
           container('kubectl'){
             sh 'helm delete  wordpress1 --purge'
+             sh 'helm delete  wordpress2 --purge'
           }
        }
-        stage('deploy web-app with ansible'){
-                 container('ansible'){
-                 sh 'ansible-playbook -i inventory.yml wordpress1.yml'
-                 }
-               }
+         
+         
+         
+         
+         
+         
+       // stage('deploy web-app with ansible'){
+              //   container('ansible'){
+              //   sh 'ansible-playbook -i inventory.yml wordpress1.yml'
+              //   }
+             //  }
 }
 
