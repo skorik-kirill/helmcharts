@@ -36,7 +36,8 @@ node('pod') {
        }
    stage('docker build '){
       container('docker'){
-       app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1","/home/jenkins/agent/workspace/helmTest_master/wordpress1")
+       app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1","${WORKSPACE}/wordpress1")
+               //app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1","/home/jenkins/agent/workspace/helmTest_master/wordpress1")
        //sh 'docker build . -t us.gcr.io/sincere-hybrid-274219/wordpress1 -f ${PWD}/wordpress1/Dockerfile'
       }
    }
