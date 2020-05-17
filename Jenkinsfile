@@ -158,7 +158,7 @@ node('pod') {
          
             }
          
-         
+   }
          
          stage('delete test deployment'){
           container('kubectl'){
