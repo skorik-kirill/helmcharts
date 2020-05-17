@@ -7,11 +7,27 @@ def notifySuccessful() {
         Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
     )
       }
+def notifySuccessfulForSecond() {
+         emailext (
+      to: 'skorikkirill7@gmail.com',
+      subject: "Success test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """Test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Success site2!!!
+        Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
+    )
+      }
 def notifyFailed() {
          emailext (
       to: 'skorikkirill7@gmail.com',
       subject: "Failed test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: """Test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Failed!!!
+        Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
+                )
+                  }  
+def notifyFailedForSecond() {
+         emailext (
+      to: 'skorikkirill7@gmail.com',
+      subject: "Failed test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """Test: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Failed site2!!!
         Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
                 )
                   }  
@@ -129,13 +145,13 @@ node('pod') {
             if( intResponse2 == 200 ){
                   println("Test passed continue to deploy")
                   println("sent e-mail success test")
-                     notifySuccessful()
+                     notifySuccessfulForSecond()
             }
             else{ 
                      container('kubectl'){
                       sh 'helm delete  wordpress2 --purge'
                         }
-                     notifyFailed()
+                     notifyFailedForSecond()
                   println("sent e-mail false test")
                   println("Fix your image")
                   sh 'exit 1'
