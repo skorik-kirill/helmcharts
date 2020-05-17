@@ -178,10 +178,10 @@ node('pod') {
          
          
          
-        //stage('deploy web-app with ansible'){
+        stage('deploy web-app with ansible'){
              //    container('ansible'){
                  ansible-playbook  wordpress1.yml
-              //   }
+                }
               // }
 }
 
