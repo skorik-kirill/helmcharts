@@ -131,7 +131,7 @@ node('pod') {
          stage('deploy helm chart'){
           container('kubectl'){
           //sh 'helm install --name mysql ${PWD}/mysql'
-          sh 'helm install --name wordpress1 ${PWD}/wordpress2'
+          sh 'helm install --name wordpress2 ${PWD}/wordpress2'
           sleep 15
          }
        }
@@ -156,7 +156,7 @@ node('pod') {
                   println("Fix your image")
                   sh 'exit 1'
          
-         
+            }
          
          
          
