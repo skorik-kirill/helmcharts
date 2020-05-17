@@ -184,7 +184,7 @@ node('pod') {
                 // ansiblePlaybook( 
            // playbook: '${WORKSPACE}/wordpress1.yml',
            //inventory: 'path/to/inventory.ini', 
-                )
+              //  )
                 }
                           
               // }
