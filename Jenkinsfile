@@ -98,6 +98,9 @@ node('pod') {
                   println("Test passed continue to deploy")
                   println("sent e-mail success test")
                      notifySuccessful()
+                     container('kubectl'){
+                     sh 'helm delete  wordpress1 --purge'
+                     }
             }
             else{ 
                      container('kubectl'){
@@ -146,6 +149,9 @@ node('pod') {
                   println("Test passed continue to deploy")
                   println("sent e-mail success test")
                      notifySuccessfulForSecond()
+                     container('kubectl'){
+                     sh 'helm delete  wordpress2 --purge'
+                     }
             }
             else{ 
                      container('kubectl'){
