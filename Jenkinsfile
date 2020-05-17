@@ -36,7 +36,7 @@ node('pod') {
        }
    stage('docker build '){
       container('docker'){
-       app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1","${PWD}/wordpress1/Dockerfile")
+       app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1")
       }
    }
    stage('push image to GCR'){
