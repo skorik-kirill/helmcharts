@@ -179,7 +179,7 @@ node('pod') {
          
          
         stage('deploy web-app with ansible'){
-             //    container('ansible'){
+                 container('ansible'){
                  sh 'ansible-playbook ${PWD}/wordpress1.yml'
                 // ansiblePlaybook( 
            // playbook: '${WORKSPACE}/wordpress1.yml',
@@ -187,6 +187,6 @@ node('pod') {
               //  )
                 }
                           
-              // }
+               }
 }
 
