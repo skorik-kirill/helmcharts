@@ -1,5 +1,4 @@
 - hosts: kuberCluster
   gather_facts: false
-  connection: local
   roles:
     - wordpress1  
