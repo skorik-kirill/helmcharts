@@ -180,8 +180,9 @@ node('pod') {
          
         stage('deploy web-app with ansible'){
              //    container('ansible'){
-                 ansiblePlaybook( 
-            playbook: '${WORKSPACE}/wordpress1.yml',
+                 sh 'ansible-playbook ${PWD}/wordpress1.yml'
+                // ansiblePlaybook( 
+           // playbook: '${WORKSPACE}/wordpress1.yml',
            //inventory: 'path/to/inventory.ini', 
                 )
                 }
