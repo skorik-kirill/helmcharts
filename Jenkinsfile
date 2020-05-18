@@ -173,7 +173,11 @@ node('pod') {
         //  }
     //   }
          
-         
+         stege('who am i '){
+             container('ansible'){
+                  sh 'whoami'
+             }
+         }
          
          
          
