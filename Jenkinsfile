@@ -44,7 +44,8 @@ node('pod') {
     checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/helmcharts.git']]]
       def app 
       
-   
+         when(env.BRANCH_NAME == "master"){
+                  
     stage(' test docker   ') {
        container('docker') {
       sh 'docker ps '
@@ -190,5 +191,5 @@ node('pod') {
              //   }
                   echo "THE END"        
              //  }
+   }
 }
-
