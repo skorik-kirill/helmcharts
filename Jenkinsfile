@@ -84,7 +84,7 @@ node('pod') {
           container('kubectl'){
           //sh 'helm install --name mysql ${PWD}/mysql'
           sh 'helm install --name wordpress1 ${PWD}/wordpress1'
-          sleep 15
+          sleep 25
          }
        }
    stage('test site'){
@@ -135,7 +135,7 @@ node('pod') {
           container('kubectl'){
           //sh 'helm install --name mysql ${PWD}/mysql'
           sh 'helm install --name wordpress2 ${PWD}/wordpress2'
-          sleep 15
+          sleep 25
          }
        }
    stage('test site'){
