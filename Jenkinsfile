@@ -84,7 +84,7 @@ node('pod') {
           container('kubectl'){
           //sh 'helm install --name mysql ${PWD}/mysql'
           sh 'helm install --name wordpress1 ${PWD}/wordpress1'
-          sleep 25
+          sleep 15
          }
        }
    stage('test site'){
@@ -135,7 +135,7 @@ node('pod') {
           container('kubectl'){
           //sh 'helm install --name mysql ${PWD}/mysql'
           sh 'helm install --name wordpress2 ${PWD}/wordpress2'
-          sleep 25
+          sleep 15
          }
        }
    stage('test site'){
@@ -180,8 +180,9 @@ node('pod') {
          
         stage('deploy web-app with ansible'){
                  container('ansible'){
-                 sh 'ansible-playbook -i inventory.yml ${PWD}/wordpress1.yml'
-                // ansiblePlaybook( 
+                 //sh 'ansible-playbook -i inventory.yml ${PWD}/wordpress1.yml'
+                sh 'ansible-playbook ansibletest.yml'
+                          // ansiblePlaybook( 
            // playbook: '${WORKSPACE}/wordpress1.yml',
            //inventory: 'path/to/inventory.ini', 
               //  )
