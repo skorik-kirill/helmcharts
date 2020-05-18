@@ -188,7 +188,7 @@ node('pod') {
            //inventory: 'path/to/inventory.ini', 
               //  )
              //   }
-                          
+                  echo "THE END"        
              //  }
 }
 
