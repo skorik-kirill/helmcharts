@@ -173,18 +173,13 @@ node('pod') {
         //  }
     //   }
          
-         stege('who am i '){
-             container('ansible'){
-                  sh 'whoami'
-             }
-         }
-         
-         
-         
+        
+    
          
         stage('deploy web-app with ansible'){
                  container('ansible'){
-                 sh 'ansible-playbook -i inventory.yml ${PWD}/wordpress1.yml --become-user skorikkirill7'
+                           sh 'whoami'
+                 sh 'ansible-playbook -i inventory.yml ${PWD}/wordpress1.yml'
                // sh 'ansible-playbook ansibletest.yml'
                           // ansiblePlaybook( 
            // playbook: '${WORKSPACE}/wordpress1.yml',
