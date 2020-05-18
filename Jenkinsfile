@@ -90,7 +90,7 @@ node('pod') {
    stage('test site'){
      //sh 'curl http://add194f6.ngrok.io' 
      
-    def response= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n" http://a9d0fef0.ngrok.io', returnStdout: true)
+    def response= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n" http://989bd45d.ngrok.io', returnStdout: true)
      //sh  ' echo $response' 
            println("Response: " +response)
             def intResponse = response as int
@@ -141,7 +141,7 @@ node('pod') {
    stage('test site'){
      //sh 'curl http://add194f6.ngrok.io' 
      
-    def response2= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n" http://7f6a294b.ngrok.io', returnStdout: true)
+    def response2= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n" http://42bbbc6d.ngrok.io', returnStdout: true)
      //sh  ' echo $response' 
            println("Response: " +response2)
             def intResponse2 = response2 as int
