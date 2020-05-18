@@ -1,8 +1,7 @@
-
 - hosts: 
     - localhost
   gather_facts: false
   - name: kubectl get secrets
-      shell: kubectl get secrets
-      register: kube_secrets
+    shell: kubectl get secrets
+    register: kube_secrets
     
