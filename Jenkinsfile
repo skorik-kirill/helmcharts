@@ -230,5 +230,5 @@ node('master'){
           sh 'su - skorikkirill7'
              sh ' su skorikkirill7 -c "ansible-playbook -i inventory.yml ${PWD}/wordpress1and2.yml"'        
     }
-         notifySuccessfulDeploy(
+         notifySuccessfulDeploy()
 }
