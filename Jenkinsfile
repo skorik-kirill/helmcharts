@@ -208,7 +208,7 @@ node('pod') {
          
        // stage('deploy web-app with ansible'){
              //    container('ansible'){
-               //            sh 'whoami'
+               
             ///              sh 'su - skorikkirill7'
                //           sh 'whoami'
             //     sh 'ansible-playbook -i inventory.yml ${PWD}/wordpress1.yml'
