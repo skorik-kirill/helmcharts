@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress2
+  labels:
+    app: vh02
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: vh02
+    tier: vh02 
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wordpress2
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /wordpress2
+        backend:
+          serviceName: wordpress2
+          servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: vh02
+  labels:
+    app: vh02
+spec:
+  selector: 
+    matchLabels:
+      app: vh02
+      tier: vh02
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: vh02
+        tier: vh02
+    spec:
+      containers:
+      - image: us.gcr.io/sincere-hybrid-274219/wordpress2:latest
+        name: vh02
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: mysql
+        - name: WORDPRESS_DB_USER
+          value: wordpress_user
+        - name: WORDPRESS_DB_NAME
+          value: vh02_wordpress_db
+        - name: WORDPRESS_DB_PASSWORD
+          value: PASSWORD
+        ports:
+        - containerPort: 80
+          name: vh02
