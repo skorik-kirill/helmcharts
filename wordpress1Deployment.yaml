@@ -11,7 +11,7 @@ spec:
     app: vh01
     tier: vh01 
   type: ClusterIP
-  ---
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -27,7 +27,7 @@ spec:
         backend:
           serviceName: wordpress
           servicePort: 80
- ---
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
