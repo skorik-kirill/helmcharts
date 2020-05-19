@@ -210,7 +210,7 @@ node('pod') {
              //    container('ansible'){
                
             //             sh 'su - skorikkirill7'
-               //           sh 'whoami'
+               // //          sh 'whoami'
             //     sh 'ansible-playbook -i inventory.yml ${PWD}/wordpress1.yml'
                // sh 'ansible-playbook ansibletest.yml'
                           // ansiblePlaybook( 
