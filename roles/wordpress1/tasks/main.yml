@@ -4,6 +4,6 @@
   git:
     repo: https://github.com/skorik-kirill/helmcharts.git
     dest: /tmp/chart
-    update: no
+    update: yes
 - name: apply deployment
   command: "kubectl apply -f /tmp/chart/wordpress1Deployment.yaml"
