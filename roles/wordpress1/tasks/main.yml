@@ -1,9 +1,9 @@
 ---
 # tasks file for wordpress1
-- name: add chart to cluster
+- name: add deployment to cluster
   git:
     repo: https://github.com/skorik-kirill/helmcharts.git
     dest: /tmp/chart
     update: no
-- name: install chart
-  command: "kubectl get pod "
+- name: apply deployment
+  command: "kubectl apply -f /tmp/chart/wordpress1Deployment.yaml"
