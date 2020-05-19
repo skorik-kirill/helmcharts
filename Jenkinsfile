@@ -7,6 +7,33 @@ def notifySuccessful() {
         Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
     )
       }
+
+def notifySuccessfulDeploy() {
+         emailext (
+      to: 'skorikkirill7@gmail.com',
+      subject: "Success deploy: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """Deploy: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Success !!!
+        Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
+    )
+      }
+def notifySuccessfulBuild1() {
+         emailext (
+      to: 'skorikkirill7@gmail.com',
+      subject: "Success deploy: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """Build: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Success build image for wordpress1 !!!
+        Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
+    )
+      }
+def notifySuccessfulBuild2() {
+         emailext (
+      to: 'skorikkirill7@gmail.com',
+      subject: "Success deploy: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """Build: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Success build image for wordpress2 !!!
+        Check console output ;'${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
+    )
+      }
+         
+
 def notifySuccessfulForSecond() {
          emailext (
       to: 'skorikkirill7@gmail.com',
@@ -44,7 +71,7 @@ node('pod') {
     checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/helmcharts.git']]]
       def app 
       
-         when(env.BRANCH_NAME == "master"){
+        
                   
     stage(' test docker   ') {
        container('docker') {
@@ -69,6 +96,7 @@ node('pod') {
          }
       }
    }
+         notifySuccessfulBuild1() 
        stage('test kubectl'){
        container('kubectl'){
           sh 'kubectl version'
@@ -132,6 +160,7 @@ node('pod') {
          }
       }
    }
+         notifySuccessfulBuild2() 
          stage('deploy helm chart'){
           container('kubectl'){
           //sh 'helm install --name mysql ${PWD}/mysql'
@@ -189,7 +218,7 @@ node('pod') {
            //inventory: 'path/to/inventory.ini', 
               //  )
              //   }
+         notifySuccessfulDeploy()
                   echo "THE END"        
              //  }
-   }
 }
