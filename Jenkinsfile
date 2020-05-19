@@ -221,4 +221,14 @@ node('pod') {
          notifySuccessfulDeploy()
                   echo "THE END"        
              //  }
+         
+}
+node('master'){
+         
+    stage('deploy with ansible'){        
+          sh 'ls' 
+          sh 'su - skorikkirill7'
+             sh ' su skorikkirill7 -c "ansible-playbook -i inventory.yml ${PWD}/wordpress1.yml"'
+        
+    }
 }
