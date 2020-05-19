@@ -1,4 +1,5 @@
 - hosts: kuberCluster
   gather_facts: false
   roles:
-    - wordpress1  
+    - wordpress1 
+    - wordpress2
