@@ -1,4 +1,4 @@
-image: skorikkirill/wordpress2:1
+image: skorikkirill/wordpress2:latest
 name: vh02
 app: vh02
 tier: vh02
