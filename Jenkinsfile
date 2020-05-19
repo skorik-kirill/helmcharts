@@ -224,8 +224,8 @@ node('pod') {
          
 }
 node('master'){
-         
-    stage('deploy with ansible'){        
+         checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/helmcharts.git']]]
+    stage('deploy with ansible'){  
           sh 'ls' 
           sh 'su - skorikkirill7'
              sh ' su skorikkirill7 -c "ansible-playbook -i inventory.yml ${PWD}/wordpress1.yml"'
