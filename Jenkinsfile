@@ -37,7 +37,7 @@ pipeline {
           script{
              def response= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n"  http://34.71.232.200/wordpress1/', returnStdout: true)
      //sh  ' echo $response' 
-           sh 'echo $response'
+           println("Response: " +response)
           }
        }
       }
