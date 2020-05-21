@@ -144,8 +144,8 @@ pipeline {
               emailext body: "Test wordpress2: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Test Fail!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
                }
       }
-         }  
-         }
+    }  
+         
    
       stage('deploy with ansible'){
          agent {label 'master'}
