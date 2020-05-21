@@ -14,7 +14,7 @@ pipeline {
    stage('docker build '){
       steps{
          def app
-          echo "BUILD DOCKER IMAGE AND TEST FOR SITE1
+         
       container('docker'){
          
        app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1","${WORKSPACE}/wordpress1")
