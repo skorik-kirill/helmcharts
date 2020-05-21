@@ -113,7 +113,7 @@ pipeline {
           }
    post{
       success{
-            emailext body: 'Build: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\': Success!!!', subject: 'Build result', to: 'skorikkirill7@gmail.com'  
+            emailext body: "Build: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
       }
       }
         }
