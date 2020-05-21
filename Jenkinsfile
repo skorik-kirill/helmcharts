@@ -2,8 +2,8 @@ pipeline {
    agent {label 'pod'}
          stages{
                   stage('Test docker'){
-                     container('docker'){
                            steps{
+                              container('docker'){
                                     sh 'docker ps'
                            }
                         }
