@@ -111,4 +111,9 @@ pipeline {
                 }
              }
           }
+   post{
+      success{
+            emailext to: 'skorikkirill7@gmail.com'  body: """Build '${env.JOB_NAME} [${env.BUILD_NUMBER}]': success""", subject: 'Build result'  
+      }
+      }
         }
