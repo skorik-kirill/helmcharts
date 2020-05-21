@@ -13,10 +13,11 @@ pipeline {
          
    stage('docker build '){
       steps{
-         def app
+         
          
       container('docker'){
-         
+         script{
+             def app
        app = docker.build("us.gcr.io/sincere-hybrid-274219/wordpress1","${WORKSPACE}/wordpress1")
          docker.withRegistry('https://us.gcr.io', 'gcr:ClusterGPR') {
               app.push("${env.BUILD_NUMBER}")
@@ -25,7 +26,8 @@ pipeline {
           }
       }
    }
-            stage('test kubectl'){
+  }
+      stage('test kubectl'){
                steps{
        container('kubectl'){
           sh 'kubectl version'
