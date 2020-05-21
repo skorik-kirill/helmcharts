@@ -21,6 +21,11 @@ pipeline {
                 }
              }
          }
+      post{
+      success{
+            emailext body: "Build wordpress1: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Build Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
+      }
+      }
       }
             stage('deploy helm chart') {
                steps{
@@ -61,7 +66,7 @@ pipeline {
              
             post{
       success{
-            emailext body: "Build image: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Build Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
+            emailext body: "Test wordpress1: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Test Success!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
       }
       }
       }
@@ -78,6 +83,11 @@ pipeline {
                 }
              }
          }
+               post{
+      success{
+            emailext body: "Build wordpress2: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Build Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
+      }
+      }
       }
             stage('deploy helm chart for site 2') {
                steps{
@@ -116,6 +126,11 @@ pipeline {
                     }
                 }
              }
+            post{
+      success{
+            emailext body: "Test wordpress2: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Test Success!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
+      }
+      }
           }
    post{
       success{
