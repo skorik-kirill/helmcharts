@@ -42,7 +42,7 @@ pipeline {
             if( intResponse == 200 ){
                   println("Test passed continue to deploy")
                   println("sent e-mail success test")
-                     notifySuccessful()
+                    // notifySuccessful()
                      container('kubectl'){
                      sh 'helm delete  wordpress1 --purge'
                      }
@@ -51,7 +51,7 @@ pipeline {
                      container('kubectl'){
                       sh 'helm delete  wordpress1 --purge'
                         }
-                     notifyFailed()
+                   //  notifyFailed()
                   println("sent e-mail false test")
                   println("Fix your image")
                   sh 'exit 1'
