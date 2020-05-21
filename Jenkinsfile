@@ -9,9 +9,7 @@ pipeline {
                         }
                   }  
    stage('docker build and push '){
-      steps{
-         
-         
+      steps{  
       container('docker'){
          script{
              def app
@@ -19,11 +17,11 @@ pipeline {
          docker.withRegistry('https://us.gcr.io', 'gcr:ClusterGPR') {
               app.push("${env.BUILD_NUMBER}")
               app.push("latest")    
-               }
-          }
+                   }
+                }
+             }
+         }
       }
-   }
-  }
             stage('deploy helm chart') {
                steps{
                   container('kubectl'){
@@ -33,14 +31,35 @@ pipeline {
                      }
                   }
                }
-               }
-      stage('test kubectl'){
-               steps{
-       container('kubectl'){
-          sh 'kubectl version'
-          sh 'kubectl get pod'
-          sh 'helm list'
-                  }
+             }
+      stage('test site'){
+       steps{
+          script{
+             def response= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n"  http://34.71.232.200/wordpress1/', returnStdout: true)
+     //sh  ' echo $response' 
+           println("Response: " +response)
+            def intResponse = response as int
+            if( intResponse == 200 ){
+                  println("Test passed continue to deploy")
+                  println("sent e-mail success test")
+                    
+                     container('kubectl'){
+                     sh 'helm delete  wordpress1 --purge'
+                     }
+            }
+            else{ 
+                     container('kubectl'){
+                      sh 'helm delete  wordpress1 --purge'
+                        }
+                   
+                  println("sent e-mail false test")
+                  println("Fix your image")
+                  sh 'exit 1'
+            }
+                            }
+                      }    
+                    }
+                  
                }
             }
             
