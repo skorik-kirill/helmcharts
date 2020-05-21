@@ -38,6 +38,26 @@ pipeline {
              def response= sh(script: 'curl -s -o /dev/null -w "%{http_code}\n"  http://34.71.232.200/wordpress1/', returnStdout: true)
      //sh  ' echo $response' 
            println("Response: " +response)
+             def intResponse = response as int
+            if( intResponse == 200 ){
+                  println("Test passed continue to deploy")
+                  println("sent e-mail success test")
+                     notifySuccessful()
+                     container('kubectl'){
+                     sh 'helm delete  wordpress1 --purge'
+                     }
+            }
+            else{ 
+                     container('kubectl'){
+                      sh 'helm delete  wordpress1 --purge'
+                        }
+                     notifyFailed()
+                  println("sent e-mail false test")
+                  println("Fix your image")
+                  sh 'exit 1'
+                     
+            }
+   }
           }
        }
       }
