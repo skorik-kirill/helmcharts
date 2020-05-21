@@ -146,6 +146,17 @@ pipeline {
       }
          }  
          }
+   agent {label 'master'}
+   stages{
+      stage('deploy with ansible'){
+         steps{
+            script{
+                sh 'su - skorikkirill7'
+             sh ' su skorikkirill7 -c "ansible-playbook -i ansible/inventory.yml ${PWD}/ansible/wordpress1and2.yml"'    
+            }
+         }
+      }
+      }
    post{
       success{
             emailext body: "Build: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
