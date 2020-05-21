@@ -146,16 +146,15 @@ pipeline {
       }
          }  
          }
-   agent {label 'master'}
-   stages{
+   
       stage('deploy with ansible'){
+         agent {label 'master'}
          steps{
             script{
                 sh 'su - skorikkirill7'
              sh ' su skorikkirill7 -c "ansible-playbook -i ansible/inventory.yml ${PWD}/ansible/wordpress1and2.yml"'    
             }
          }
-      }
       }
    post{
       success{
