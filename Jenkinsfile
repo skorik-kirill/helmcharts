@@ -1,4 +1,6 @@
 pipeline {
+   checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/skorik-kirill/helmcharts.git']]]
+   def app
    agent {label 'pod'}
          stages{
                   stage('Test docker'){
