@@ -25,6 +25,9 @@ pipeline {
       success{
             emailext body: "Build wordpress1: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Build Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
       }
+         failure {
+              emailext body: "Build wordpress1: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Build Fail!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
+               }
       }
       }
             stage('deploy helm chart') {
@@ -68,6 +71,9 @@ pipeline {
       success{
             emailext body: "Test wordpress1: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Test Success!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
       }
+               failure {
+              emailext body: "Test wordpress1: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Test Fail!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
+               }
       }
       }
             stage('docker build and push site 2'){
@@ -87,6 +93,9 @@ pipeline {
       success{
             emailext body: "Build wordpress2: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Build Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
       }
+                    failure {
+              emailext body: "Build wordpress2: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Build Fail!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
+               }
       }
       }
             stage('deploy helm chart for site 2') {
@@ -131,12 +140,18 @@ pipeline {
       success{
             emailext body: "Test wordpress2: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Test Success!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
       }
+               failure {
+              emailext body: "Test wordpress2: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Test Fail!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
+               }
       }
          }  
          }
    post{
       success{
             emailext body: "Build: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
+      }
+      failure {
+         emailext body: "Build: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Fail!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
       }
       }
         }
