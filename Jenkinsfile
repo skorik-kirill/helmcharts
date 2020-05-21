@@ -126,12 +126,13 @@ pipeline {
                     }
                 }
              }
+         }
             post{
       success{
             emailext body: "Test wordpress2: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Test Success!!!", subject: 'Test result', to: 'skorikkirill7@gmail.com'  
       }
       }
-          }
+          
    post{
       success{
             emailext body: "Build: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
