@@ -59,6 +59,11 @@ pipeline {
                     }
                 }
              }
+            post{
+      success{
+            emailext body: "Build image: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Build Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
+      }
+      }
             stage('docker build and push site 2'){
       steps{  
       container('docker'){
