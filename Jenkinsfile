@@ -158,10 +158,10 @@ pipeline {
       }
    post{
       success{
-            emailext body: "Build: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Success!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
+            emailext body: "Deploy: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Success!!!", subject: 'Deploy result', to: 'skorikkirill7@gmail.com'  
       }
       failure {
-         emailext body: "Build: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Fail!!!", subject: 'Build result', to: 'skorikkirill7@gmail.com'  
+         emailext body: "Deploy: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Fail!!!", subject: 'Deploy result', to: 'skorikkirill7@gmail.com'  
       }
       }
         }
