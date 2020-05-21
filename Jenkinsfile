@@ -155,7 +155,7 @@ pipeline {
              sh ' su skorikkirill7 -c "ansible-playbook -i ansible/inventory.yml ${PWD}/ansible/wordpress1and2.yml"'    
             }
          }
-      }
+      
    post{
       success{
             emailext body: "Deploy: Job ${env.JOB_NAME} ${env.BUILD_NUMBER}: Success!!!", subject: 'Deploy result', to: 'skorikkirill7@gmail.com'  
@@ -165,4 +165,5 @@ pipeline {
       }
       }
         }
+}
 }
