@@ -7,11 +7,8 @@ pipeline {
                                     sh 'docker ps'
                            }
                         }
-                  }
-                  
-             
-         
-   stage('docker build '){
+                  }  
+   stage('docker build and push '){
       steps{
          
          
@@ -27,6 +24,16 @@ pipeline {
       }
    }
   }
+            stage('deploy helm chart') {
+               steps{
+                  container('kubectl'){
+                     script{
+                       sh 'helm install --name wordpress1 ${PWD}/wordpress1'
+                        sleep 15 
+                     }
+                  }
+               }
+               }
       stage('test kubectl'){
                steps{
        container('kubectl'){
